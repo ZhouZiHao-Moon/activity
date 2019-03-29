@@ -1,0 +1,16 @@
+{
+    "appenders":{
+        "app.js":{
+            "type":"file",
+            "filename":"logs/file.log",
+            "maxLogSize": 1048576,
+            "backups": 52400
+        }
+    },
+    "categories":{
+        "default":{
+            "appenders":["app.js"],
+            "level":"info"
+        }
+    }
+}

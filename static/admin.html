@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>南通中学社团活动申请系统(管理员界面)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <script src="https://yanxue-1257153832.cos.ap-chengdu.myqcloud.com/static/js/mdui.min.js"></script>
+    <script src="https://yanxue-1257153832.cos.ap-chengdu.myqcloud.com/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://yanxue-1257153832.cos.ap-chengdu.myqcloud.com/static/css/mdui.min.css">
+    <script>
+        function get()
+        {
+            var url = window.location.pathname;
+            $.post(url,(data)=>{
+                var dataObject = JSON.parse(data);
+                for(var i=0;i<dataObject.length;i++)
+                {
+                    var dat = dataObject[i];
+                    var htmltext = '<tr><td>'+dat["name"]+'</td><td>'+dat["place"]+'</td><td><a href="javascript:;" onclick="mdui.alert(\'社团名称：'+dat["name"]+'<br />社团负责人：'+dat["master"]+'<br />活动时间：'+dat["time"]+'<br />活动地点：'+dat["place"]+'<br />活动内容：'+dat["activity"]+'<br />活动目的：'+dat["purpose"]+'<br />活动方式：'+dat["method"]+'<br />安全保障：'+dat["safety"]+'\');">详情</a></td></tr>';
+                    $("#table").append(htmltext);
+                }
+            });
+        }
+    </script>
+</head>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo">
+    <div class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-theme">
+            <a href="javascript:;" class="mdui-typo-headline">南通中学社团活动申请系统(管理员界面)</a>
+        </div>
+    </div>
+    <br />
+    <div class="mdui-container">
+        <div class="mdui-table-fluid mdui-typo">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>社团名称</th>
+                        <th>场地要求</th>
+                        <th class="mdui-table-col-numeric"></th>
+                    </tr>
+                </thead>
+                <tbody id="table">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div class="mdui-typo-caption" style="text-align: center; margin-bottom: 16px">@南通中学极客社 周子皓</div>
+    <script>get();</script>
+</body>
+</html>

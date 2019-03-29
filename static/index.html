@@ -1,0 +1,86 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>南通中学社团活动申请系统</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <script src="https://yanxue-1257153832.cos.ap-chengdu.myqcloud.com/static/js/mdui.min.js"></script>
+    <script src="https://yanxue-1257153832.cos.ap-chengdu.myqcloud.com/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://yanxue-1257153832.cos.ap-chengdu.myqcloud.com/static/css/mdui.min.css">
+    <script>
+        function submit()
+        {
+            var data = {
+                "name": $("#name").val(),
+                "master": $("#master").val(),
+                "time": $("#time").val(),
+                "place": $("#place").val(),
+                "activity": $("#activity").val(),
+                "purpose": $("#purpose").val(),
+                "method": $("#method").val(),
+                "safety": $("#safety").val()
+            };
+            $.post("submit/", data=data, (data)=>{
+                if(data=="success")
+                {
+                    mdui.alert("提交成功！");
+                }
+                else if(data=="exists")
+                {
+                    mdui.alert("该社团本周已提交！","提交失败！");
+                }
+                else if(data=="fail")
+                {
+                    mdui.alert("该社团不存在","提交失败！");
+                }
+                else
+                {
+                    mdui.alert(data);
+                }
+            });
+        }
+    </script>
+</head>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-indigo">
+    <div class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-theme">
+            <a href="javascript:;" class="mdui-typo-headline">南通中学社团活动申请系统</a>
+        </div>
+    </div>
+    <div class="mdui-container">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">社团名称</label>
+            <input class="mdui-textfield-input" id="name"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">负责人姓名</label>
+            <input class="mdui-textfield-input" id="master"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">活动时间</label>
+            <input class="mdui-textfield-input" id="time"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">场地要求</label>
+            <input class="mdui-textfield-input" id="place"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">活动内容</label>
+            <input class="mdui-textfield-input" id="activity"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">活动目的</label>
+            <input class="mdui-textfield-input" id="purpose"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">活动形式</label>
+            <input class="mdui-textfield-input" id="method"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">安全保障</label>
+            <input class="mdui-textfield-input" id="safety"/>
+        </div>
+        <button onclick="submit();" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
+    </div>
+    <div class="mdui-typo-caption" style="text-align: center; margin-bottom: 16px">@南通中学极客社 周子皓</div>
+</body>
+</html>
